@@ -1,6 +1,9 @@
 # focus-project
 Utilizing Claude AI, this is a focus application that calculates how much more time you should focus on your task given your update on the task. It dynamically keeps track by playing relevant music to the task. 
-
+# Tools used
+- Vite: for easy and fast web application builds which has support for server-side rendering allowing me to not recompile each time
+- React: open-source JS library that allows for reusable components for a simple and fast development. It uses Typescript so its strongly typed which helps with ambiguity especially as someone who has learned Java
+- Tailwind CSS: framework that makes CSS a whole lot easier
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
