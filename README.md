@@ -4,6 +4,7 @@ Utilizing Claude AI, this is a focus application that calculates how much more t
 - Vite: for easy and fast web application builds which has support for server-side rendering allowing me to not recompile each time
 - React: open-source JS library that allows for reusable components for a simple and fast development. It uses Typescript so its strongly typed which helps with ambiguity especially as someone who has learned Java
 - Tailwind CSS: framework that makes CSS a whole lot easier
+- Express.js: backend web app framework for Node.js to make server side stuff easier like routing
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
