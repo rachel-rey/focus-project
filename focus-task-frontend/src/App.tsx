@@ -1,18 +1,22 @@
 import { useState } from 'react'
-import axios from 'axios';
 import { VoiceInput }from './Components/VoiceInput';
 import { TaskCard } from './Components/TaskCard';
 
 function App() {
   const [tasks, setTasks] = useState<any[]> ([])
-
-  const handleTaskSubmit = (text: string) => {
-    axios.post('http://localhost:3001/api/tasks', { text })
-      .then(response => {
-        setTasks([...tasks, response.data])
-      })
-      .catch(error => console.error(error))
+  const handleTaskSubmit = async (text: string) => {
+    const response = await fetch('http://localhost:3001/api/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ task: text}),
+    });
+    const data = await response.json();
+    setTasks((tasks) => [...tasks, data]); // Update the tasks state with the new task.  aka setTasks([...tasks, data]);
+    console.log('Task submitted:', text);
   }
+
 
   return (
     <>
@@ -20,13 +24,6 @@ function App() {
         <div>
           <h1>Get focused</h1>
           <VoiceInput onTaskSubmit={handleTaskSubmit} /> { }
-        </div>
-        <div>
-          <button
-            onClick={() => console.log("YOu ckucje it")}
-            className='p-2 bg-emerald-900 hover:bg-emerald-950 text-white rounded-lg'>
-            Submit
-          </button>
         </div>
       </section>
 

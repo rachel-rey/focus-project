@@ -15,18 +15,18 @@ interface Task {
 const tasks: Task[] = [];
 
 app.post('/api/tasks', (req, res) => {
-     const { text } =  req.body;
+     const body =  req.body;
 
-     if(!text){
-          return res.status(400).json({ error: 'Task text required'});
+     if(!body.task || typeof body.task !== 'string') {
+          res.status(400).json({ error: 'Task text required'}).send();
      }
      const task: Task = {
-          text, 
+          text: body.task, 
           id: Date.now().toString(),
           createdAt: new Date().toISOString(),
      };
      tasks.push(task);
-     console.log(`Taskk received: ${text}`);
+     console.log(`Task received: ${body.task}`);
      res.json(task);
 })
 

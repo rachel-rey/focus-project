@@ -3,6 +3,7 @@ import { useState } from 'react'
 export function VoiceInput({onTaskSubmit}: {onTaskSubmit: (text: string) => void}){
      const [transcript, setTranscript] = useState('');
 
+
      const startListening = () => {
           const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
           if (!SpeechRecognition) {
@@ -17,9 +18,11 @@ export function VoiceInput({onTaskSubmit}: {onTaskSubmit: (text: string) => void
           recognition.maxAlternatives = 1;
 
           recognition.onresult = (event: SpeechRecognitionEvent) => {
+               console.log('Speech recognition result:', event.results);
                const text = Array.from(event.results)
                     .map((result) => result[0].transcript)
                     .join('');
+               console.log('Transcript:', text);
                setTranscript(text);
           };
           recognition.start();
@@ -40,6 +43,12 @@ export function VoiceInput({onTaskSubmit}: {onTaskSubmit: (text: string) => void
                >
                     Speak Task
                </button>
+                    <button
+                         onClick={() => onTaskSubmit(transcript)}
+                         className='p-1 bg-emerald-900 hover:bg-emerald-950 text-white rounded mt-2'
+                    >
+                         Submit Task
+                    </button>
           </div>
      )
 }
